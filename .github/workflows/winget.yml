@@ -1,0 +1,37 @@
+name: Submit o9-9.o9Sc
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  sync-repo:
+    name: Sync winget-pkgs repo
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo sync o9-9/winget-pkgs -b master
+        env:
+          GH_TOKEN: ${{ secrets.WINGET_TOKEN }}
+
+  winget:
+    name: Publish winget package
+    needs: sync-repo
+    runs-on: windows-latest
+    steps:
+      - name: Submit package to Windows Package Manager Community Repository
+        run: |
+          $packageId = "o9-9.o9Sc"
+          $gitToken = "${{ secrets.WINGET_TOKEN }}"
+
+          # Fetching latest release from GitHub
+          $github = Invoke-RestMethod -uri "https://api.github.com/repos/o9-9/o9sc/releases/latest"
+          $packageVersion = $github.tag_name.Trim("v")
+
+          # Get the download URL for o9sc-installer.exe
+          $installerUrl = $github.assets | 
+            Where-Object { $_.name -eq "o9sc-installer.exe" } | 
+            Select-Object -ExpandProperty browser_download_url
+
+          # Update package using wingetcreate with URL|architecture format
+          Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+          .\wingetcreate.exe update $packageId --version $packageVersion --urls "$installerUrl|x64" --submit --token $gitToken
