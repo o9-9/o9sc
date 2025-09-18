@@ -1,0 +1,56 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "o9Sc",
+  "version": "1.4.1",
+  "identifier": "o9-9.o9sc.dev",
+  "build": {
+    "devUrl": "http://localhost:4321/",
+    "frontendDist": "../dist",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "o9Sc",
+        "width": 1200,
+        "height": 776,
+        "minWidth": 650,
+        "minHeight": 600,
+        "resizable": true,
+        "visible": false,
+        "center": true,
+        "shadow": false,
+        "transparent": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "publisher": "o9-9",
+    "license": "GPL-3.0",
+    "createUpdaterArtifacts": true,
+    "active": true,
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/favicon.ico",
+        "sidebarImage": "icons/sidebar.bmp",
+        "installMode": "both"
+      }
+    },
+    "targets": ["nsis"],
+    "icon": ["icons/favicon.ico"]
+  },
+  "plugins": {
+    "updater": {
+      "windows": {
+        "installMode": "passive"
+      },
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCNzY5NUFGMTBENjc3MjgKUldRb2Q5WVFyNVYyNjJVMFg5QitZUmt3WVY4ajZnVmRtMDVvQklqVGtGZ09PMjkya3VpRXg3NXMK",
+      "endpoints": ["https://github.com/o9-9/o9sc/releases/latest/download/latest.json"]
+    }
+  }
+}
