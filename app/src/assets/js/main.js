@@ -1,22 +1,22 @@
-import { writeTextFile, readTextFile, mkdir, remove, exists } from "@tauri-apps/plugin-fs";
-import { tempDir, join, dirname } from "@tauri-apps/api/path";
-import { Command } from "@tauri-apps/plugin-shell";
 import { app } from "@tauri-apps/api";
-import { version, hostname } from "@tauri-apps/plugin-os";
+import { dirname, join, tempDir } from "@tauri-apps/api/path";
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import { ask, save, open } from "@tauri-apps/plugin-dialog";
-import { check } from "@tauri-apps/plugin-updater";
-import { relaunch } from "@tauri-apps/plugin-process";
+import { ask, open, save } from "@tauri-apps/plugin-dialog";
+import { exists, mkdir, readTextFile, remove, writeTextFile } from "@tauri-apps/plugin-fs";
 import { openUrl } from "@tauri-apps/plugin-opener";
+import { hostname, version } from "@tauri-apps/plugin-os";
+import { relaunch } from "@tauri-apps/plugin-process";
+import { Command } from "@tauri-apps/plugin-shell";
+import { check } from "@tauri-apps/plugin-updater";
 
 async function getChangelog() {
-  const response = await fetch("https://api.github.com/repos/o9-9/o9sc/releases/latest");
+  const response = await fetch("https://api.github.com/repos/o9-9/o99/releases/latest");
   if (!response.ok) {
     return null;
   } else {
     const data = await response.json();
     let body = data.body.replace(
-      "*The desktop app may be flagged as a threat by Windows Defender; however, this is a false positive. This occurs because the scripts you create with o9Sc can modify system settings. Rest assured, o9Sc is safe, transparent, and open-source.*",
+      "*The desktop app may be flagged as a threat by Windows Defender; however, this is a false positive. This occurs because the scripts you create with o99 can modify system settings. Rest assured, o99 is safe, transparent, and open-source.*",
       "",
     );
     body = body.trim();
@@ -85,7 +85,7 @@ async function alertForUpdates() {
     }
 
     if (updateAsk === true) {
-      await openUrl("https://github.com/o9-9/o9sc/releases/latest");
+      await openUrl("https://github.com/o9-9/o99/releases/latest");
     } else {
       return;
     }
@@ -98,20 +98,20 @@ async function isInstalled() {
   const tmpDir = await tempDir();
 
   async function checkProcess() {
-    const processCheck = `([bool](Get-Process o9sc-portable -ErrorAction SilentlyContinue)).ToString().ToLower() | Set-Content -Path $env:TEMP\\isPortable.txt;`;
+    const processCheck = `([bool](Get-Process o99-portable -ErrorAction SilentlyContinue)).ToString().ToLower() | Set-Content -Path $env:TEMP\\isPortable.txt;`;
     const processShell = new Command("cmd", ["/c", "powershell", `${processCheck}`, "pause"]);
     await processShell.execute();
   }
 
   async function checkPath() {
-    const pathCheck = `(Get-Process -Id (Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId).Path | Set-Content -Path $env:TEMP\\o9scPath.txt;`;
+    const pathCheck = `(Get-Process -Id (Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId).Path | Set-Content -Path $env:TEMP\\o99Path.txt;`;
     const pathShell = new Command("powershell", ["-Command", pathCheck]);
     await pathShell.execute();
   }
 
   function cleanFiles() {
     remove(tmpDir + "isPortable.txt");
-    remove(tmpDir + "o9scPath.txt");
+    remove(tmpDir + "o99Path.txt");
   }
 
   await checkProcess();
@@ -125,9 +125,9 @@ async function isInstalled() {
     return;
   }
 
-  const o9scPath = (await readTextFile(tmpDir + "o9scPath.txt")).toLowerCase();
-  const o9scDir = await dirname(o9scPath);
-  const uninstallPath = await join(o9scDir, "uninstall.exe");
+  const o99Path = (await readTextFile(tmpDir + "o99Path.txt")).toLowerCase();
+  const o99Dir = await dirname(o99Path);
+  const uninstallPath = await join(o99Dir, "uninstall.exe");
   const uninstallExists = await exists(uninstallPath);
 
   if (uninstallExists) {
@@ -224,7 +224,7 @@ const title = document.getElementById("content-header"); // Select the header el
 if (tabs.length > 0 && contents.length > 0) {
   tabs[0].classList.add("active");
   contents[0].classList.add("active");
-  title.textContent = tabs[0].textContent || "o9sc"; // Update header with the first tab's text
+  title.textContent = tabs[0].textContent || "o99"; // Update header with the first tab's text
 }
 
 // Remove 'active' from all other content divs except the first
@@ -452,8 +452,8 @@ document.getElementById("runBtn").addEventListener("click", async function () {
   try {
     // Get the TEMP directory path
     const tmpDir = await tempDir();
-    const dirPath = await join(tmpDir, "o9sc");
-    const filePath = await join(dirPath, "o9sc.bat");
+    const dirPath = await join(tmpDir, "o99");
+    const filePath = await join(dirPath, "o99.bat");
 
     // Create the directory
     await mkdir(dirPath, { recursive: true });

@@ -1,8 +1,8 @@
-<h1 style="color: var(--cta);">o9Sc</h1>
+<h1 style="color: var(--cta);">o99</h1>
 
-> o9sc is an open-source tool built to help you build custom scripts for Windows. It includes debloat, privacy, performance scripts & more, along with the ability to install all your favourite apps in one click.
+> o99 is an open-source tool built to help you build custom scripts for Windows. It includes debloat, privacy, performance scripts & more, along with the ability to install all your favourite apps in one click.
 
-![App Screenshot](assets/img/o9sc.webp)
+![App Screenshot](assets/img/o99.webp)
 
 ## Features
 
@@ -13,19 +13,19 @@
 
 ## Usage
 
-**o9sc must be run as Administrator to function properly.**
-_The desktop app may be flagged as a threat by Windows Defender due to its ability to modify system settings. This is a false positive—o9sc is safe, transparent, and open-source._
+**o99 must be run as Administrator to function properly.**
+_The desktop app may be flagged as a threat by Windows Defender due to its ability to modify system settings. This is a false positive—o99 is safe, transparent, and open-source._
 
 🖥️ **Launch Command**:
 
 ```
-irm "https://o9-9.com/irm" | iex
+irm "https://o99.dev/irm" | iex
 ```
 
 🖥️ **Via Winget**:
 
 ```
-winget install o9sc
+winget install o99
 ```
 
 ## Support

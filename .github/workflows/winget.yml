@@ -1,4 +1,4 @@
-name: Submit o9-9.o9Sc
+name: Submit o9-9.o99
 on:
   workflow_dispatch:
   release:
@@ -20,16 +20,16 @@ jobs:
     steps:
       - name: Submit package to Windows Package Manager Community Repository
         run: |
-          $packageId = "o9-9.o9Sc"
+          $packageId = "o9-9.o99"
           $gitToken = "${{ secrets.WINGET_TOKEN }}"
 
           # Fetching latest release from GitHub
-          $github = Invoke-RestMethod -uri "https://api.github.com/repos/o9-9/o9sc/releases/latest"
+          $github = Invoke-RestMethod -uri "https://api.github.com/repos/o9-9/o99/releases/latest"
           $packageVersion = $github.tag_name.Trim("v")
 
-          # Get the download URL for o9sc-installer.exe
-          $installerUrl = $github.assets | 
-            Where-Object { $_.name -eq "o9sc-installer.exe" } | 
+          # Get the download URL for o99-installer.exe
+          $installerUrl = $github.assets |
+            Where-Object { $_.name -eq "o99-installer.exe" } |
             Select-Object -ExpandProperty browser_download_url
 
           # Update package using wingetcreate with URL|architecture format

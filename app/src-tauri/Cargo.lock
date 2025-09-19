@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "o9Sc"
+name = "o99"
 version = "1.4.0"
 dependencies = [
  "log",

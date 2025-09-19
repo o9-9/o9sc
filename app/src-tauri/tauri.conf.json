@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "o9Sc",
+  "productName": "o99",
   "version": "1.4.1",
-  "identifier": "o9.o9sc.dev",
+  "identifier": "o9.o99.dev",
   "build": {
     "devUrl": "http://localhost:4321/",
     "frontendDist": "../dist",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "o9Sc",
+        "title": "o99",
         "width": 1200,
         "height": 776,
         "minWidth": 650,
@@ -50,7 +50,7 @@
         "installMode": "passive"
       },
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ4OTRBODk1RkI4QTY2RjQKUldUMFpvcjdsYWlVMkl0ajZwa0ZkeVhJaU1vL29aTHRWZHNnN1ZJNkU3SEs1aUdib3FTTVhVR0cK",
-      "endpoints": ["https://github.com/o9-9/o9sc/releases/latest/download/latest.json"]
+      "endpoints": ["https://github.com/o9-9/o99/releases/latest/download/latest.json"]
     }
   }
 }

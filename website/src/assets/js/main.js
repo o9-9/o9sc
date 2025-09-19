@@ -29,7 +29,7 @@ const title = document.getElementById("content-header"); // Select the header el
 if (tabs.length > 0 && contents.length > 0) {
   tabs[0].classList.add("active");
   contents[0].classList.add("active");
-  title.textContent = tabs[0].textContent || "o9sc"; // Update header with the first tab's text
+  title.textContent = tabs[0].textContent || "o99"; // Update header with the first tab's text
 }
 
 // Remove 'active' from all other content divs except the first
@@ -192,7 +192,7 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
   var blob = new Blob([textContent], { type: "text/plain" });
   var link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = "o9sc.bat";
+  link.download = "o99.bat";
 
   document.body.appendChild(link);
   link.click();

@@ -1,5 +1,5 @@
 - Getting Started
-  - [o9Sc](/)
+  - [o99](/)
 - Scripts
   - [Tools](content/tools.md)
   - [Debloat](content/debloat.md)

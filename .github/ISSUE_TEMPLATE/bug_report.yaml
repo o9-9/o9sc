@@ -53,7 +53,7 @@ body:
     id: app-version
     attributes:
       label: App version
-      description: Which version of o9sc are you using?
+      description: Which version of o99 are you using?
       placeholder: e.g., v1.2.2
     validations:
       required: true

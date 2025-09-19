@@ -1,20 +1,20 @@
-# o9Sc
+# o99
 
-[![Downloads](https://img.shields.io/github/downloads/o9-9/o9sc/total?style=for-the-badge)](https://github.com/o9-9/o9sc/releases)
-[![Release](https://img.shields.io/github/v/release/o9-9/o9sc?style=for-the-badge&label=Latest%20release)](https://github.com/o9-9/o9sc/releases/latest)
-[![Discussions](https://img.shields.io/badge/Join-the%20Discussion-2D9F2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/o9-9/o9sc/discussions)
+[![Downloads](https://img.shields.io/github/downloads/o9-9/o99/total?style=for-the-badge)](https://github.com/o9-9/o99/releases)
+[![Release](https://img.shields.io/github/v/release/o9-9/o99?style=for-the-badge&label=Latest%20release)](https://github.com/o9-9/o99/releases/latest)
+[![Discussions](https://img.shields.io/badge/Join-the%20Discussion-2D9F2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/o9-9/o99/discussions)
 [![Ko-Fi](https://shields.io/badge/ko--fi-Donate-13c3ff?logo=kofi&style=for-the-badge)](https://ko-fi.com/o99)
 
-o9Sc is a powerful, simple to use & lightweight open-source tool designed to improve and customize your Windows experience. It offers a range of features, including debloating, privacy enhancement, performance optimization, and streamlined app installation.
+o99 is a powerful, simple to use & lightweight open-source tool designed to improve and customize your Windows experience. It offers a range of features, including debloating, privacy enhancement, performance optimization, and streamlined app installation.
 <br>
 
-![App Screenshot](/website/public/o9sc.webp)
+![App Screenshot](/website/public/o99.webp)
 
 ## Features
 
 ### 🧹 Debloat
 
-o9Sc allows you to remove any pre-installed bloatware and unnecessary component from Windows. You can uninstall Microsoft Store, OneDrive, CoPilot, debloat or remove Microsoft Edge, disable Widgets & Taskbar Widgets, disable Windows Features such as Recall or Consumer Features & many more.
+o99 allows you to remove any pre-installed bloatware and unnecessary component from Windows. You can uninstall Microsoft Store, OneDrive, CoPilot, debloat or remove Microsoft Edge, disable Widgets & Taskbar Widgets, disable Windows Features such as Recall or Consumer Features & many more.
 
 ### 🔒 Privacy
 
@@ -26,23 +26,23 @@ You can enable the Ultimate Performance power plan, set background services to m
 
 ### 📦 App Installer
 
-The Browse Apps section in o9Sc makes it easy to bulk install all your essential software in just a few clicks. Choose from a list of popular apps—browsers, utilities, dev tools, media players, and more, and o9Sc will generate a script to install them automatically using your preferred package manager: Chocolatey or Winget.
+The Browse Apps section in o99 makes it easy to bulk install all your essential software in just a few clicks. Choose from a list of popular apps—browsers, utilities, dev tools, media players, and more, and o99 will generate a script to install them automatically using your preferred package manager: Chocolatey or Winget.
 
 ## Usage
 
 > [!Warning]
-> o9Sc must be run as Administrator to function properly.
+> o99 must be run as Administrator to function properly.
 
 🖥️ **Launch Command**:
 
 ```
-irm "https://o9-9.com/irm" | iex
+irm "https://o99.dev/irm" | iex
 ```
 
 🖥️ **Via Winget**:
 
 ```
-winget install o9Sc
+winget install o99
 ```
 
 ## Support
