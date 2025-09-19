@@ -1,19 +1,19 @@
 /* My style */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 :root {
-  --background: #0d091b;
-  --background-light: #18132b;
+  --background: #151517;
+  --background-light: #1b1b1c;
   --text: hsl(0, 0%, 96%);
   --muted: hsla(0, 0%, 100%, 0.8);
-  --cta: #6040bf;
+  --cta: #1e1e20;
 }
 
 html,
 body {
   background-color: var(--background) !important;
-  font-family: "Inter", system-ui, sans-serif !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
 }
 
 p {
@@ -50,7 +50,7 @@ em {
 
 /* docs\style.css */
 
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600');
 * {
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
@@ -74,7 +74,7 @@ div#app {
   text-align: center;
 }
 div#app:empty:before {
-  content: "Loading...";
+  content: 'Loading...';
 }
 img.emoji {
   height: 1.2em;
@@ -139,7 +139,7 @@ kbd {
   padding: 3px 5px;
   vertical-align: middle;
 }
-li input[type="checkbox"] {
+li input[type='checkbox'] {
   margin: 0 0.2em 0.25em 0;
   vertical-align: middle;
 }
@@ -427,7 +427,7 @@ body.sticky .sidebar-toggle {
   background-color: #f66;
   border-radius: 100%;
   color: #fff;
-  content: "!";
+  content: '!';
   font-family: Dosis, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -683,7 +683,7 @@ body {
   font-weight: 600;
 }
 .app-sub-sidebar li:before {
-  content: "-";
+  content: '-';
   padding-right: 4px;
   float: left;
 }

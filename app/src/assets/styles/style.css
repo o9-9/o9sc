@@ -5,7 +5,7 @@
   --background: #202020;
   --text: #fff;
   --muted: #ccc;
-  --primary: #6040bf;
+  --primary: #1e1e20;
 }
 
 @keyframes pop-in {
@@ -75,11 +75,11 @@
   }
 
   input:checked + .slider {
-    background-color: #6040bf !important;
+    background-color: #1e1e20 !important;
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px #6040bf !important;
+    box-shadow: 0 0 1px #1e1e20 !important;
   }
 
   input:checked + .slider:before {
@@ -334,12 +334,12 @@ details[open] .chevron {
 }
 
 input:checked + .slider {
-  background-color: #6040bf;
+  background-color: #1e1e20;
   border: none;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #6040bf;
+  box-shadow: 0 0 1px #1e1e20;
 }
 
 input:checked + .slider:before {

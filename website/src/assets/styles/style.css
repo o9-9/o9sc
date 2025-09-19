@@ -5,11 +5,11 @@
 
 :root {
   /* interpolate-size: allow-keywords; */
-  --background: #0d091b;
-  --elevated: #18132b;
+  --background: #151517;
+  --elevated: #1b1b1c;
   --text: #fff;
   --muted: #ccc;
-  --primary: #6040bf;
+  --primary: #1e1e20;
 }
 
 * {
@@ -261,12 +261,12 @@ details[open] .chevron {
 }
 
 input:checked + .slider {
-  background-color: #6040bf;
+  background-color: #1e1e20;
   border: none;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #6040bf;
+  box-shadow: 0 0 1px #1e1e20;
 }
 
 input:checked + .slider:before {
