@@ -19,7 +19,7 @@ _The desktop app may be flagged as a threat by Windows Defender due to its abili
 🖥️ **Launch Command**:
 
 ```
-irm "https://o9ll.com/irm" | iex
+irm "https://o9-9.com/irm" | iex
 ```
 
 🖥️ **Via Winget**:
