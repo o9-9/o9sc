@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "o9Sc",
   "version": "1.4.1",
-  "identifier": "o9-9.o9sc.dev",
+  "identifier": "o9.o9sc.dev",
   "build": {
     "devUrl": "http://localhost:4321/",
     "frontendDist": "../dist",
