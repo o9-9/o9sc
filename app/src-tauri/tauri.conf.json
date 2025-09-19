@@ -49,7 +49,7 @@
       "windows": {
         "installMode": "passive"
       },
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCNzY5NUFGMTBENjc3MjgKUldRb2Q5WVFyNVYyNjJVMFg5QitZUmt3WVY4ajZnVmRtMDVvQklqVGtGZ09PMjkya3VpRXg3NXMK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ4OTRBODk1RkI4QTY2RjQKUldUMFpvcjdsYWlVMkl0ajZwa0ZkeVhJaU1vL29aTHRWZHNnN1ZJNkU3SEs1aUdib3FTTVhVR0cK",
       "endpoints": ["https://github.com/o9-9/o9sc/releases/latest/download/latest.json"]
     }
   }
