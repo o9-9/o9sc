@@ -1,39 +1,37 @@
-name: Publish o99 WinGet Manifest
+name: Submit o9-9.o99
 on:
   workflow_dispatch:
   release:
     types: [published]
 
 jobs:
-  publish-winget:
+  sync-repo:
+    name: Sync winget-pkgs repo
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo sync o9-9/winget-pkgs -b master
+        env:
+          GH_TOKEN: ${{ secrets.WINGET_TOKEN }}
+
+  winget:
+    name: Publish winget package
+    needs: sync-repo
     runs-on: windows-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download latest.json
-        run: Invoke-WebRequest "https://github.com/o9-9/o99/releases/download/v1.4.1/latest.json" -OutFile latest.json
-
-      - name: Parse latest.json and update manifest
-        shell: pwsh
+      - name: Submit package to Windows Package Manager Community Repository
         run: |
-          $json = Get-Content latest.json | ConvertFrom-Json
-          $version = $json.version
-          $url = $json.platforms.'windows-x86_64'.url
+          $packageId = "o9-9.o99"
+          $gitToken = "${{ secrets.WINGET_TOKEN }}"
 
-          # Read manifest template
-          $manifestPath = ".winget/o9-9.o99.yaml"
-          $manifest = Get-Content $manifestPath
+          # Fetching latest release from GitHub
+          $github = Invoke-RestMethod -uri "https://api.github.com/repos/o9-9/o99/releases/latest"
+          $packageVersion = $github.tag_name.Trim("v")
 
-          # Update Version and Url in manifest
-          $manifest = $manifest -replace "Version:.*", "Version: $version"
-          $manifest = $manifest -replace "Url:.*", "Url: $url"
+          # Get the download URL for o99-installer.exe
+          $installerUrl = $github.assets |
+            Where-Object { $_.name -eq "o99-installer.exe" } |
+            Select-Object -ExpandProperty browser_download_url
 
-          # Save updated manifest
-          Set-Content -Path $manifestPath -Value $manifest
-
-      - name: Download wingetcreate
-        run: Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
-
-      - name: Submit manifest to WinGet repo
-        run: .\wingetcreate.exe submit --token "${{ secrets.WINGET_TOKEN }}" .winget/o9-9.o99.yaml
+          # Update package using wingetcreate with URL|architecture format
+          Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+          .\wingetcreate.exe update $packageId --version $packageVersion --urls "$installerUrl|x64" --submit --token $gitToken
