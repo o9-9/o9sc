@@ -33,6 +33,14 @@ The Browse Apps section in o99 makes it easy to bulk install all your essential 
 > [!Warning]
 > o99 must be run as Administrator to function properly.
 
+### System Requirements
+
+Before using o99, ensure your system meets the [dependency requirements](docs/content/dependencies.md):
+- Windows 10 (1809+) or Windows 11
+- .NET Framework 4.8+
+- PowerShell 5.1+
+- Administrator privileges
+
 🖥️ **Launch Command**:
 
 ```
