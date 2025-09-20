@@ -141,6 +141,126 @@ async function isInstalled() {
 
 isInstalled();
 
+// Check system dependencies
+async function checkSystemDependencies() {
+  const dependencies = {
+    dotnet: false,
+    powershell: false,
+    chocolatey: false,
+    winget: false
+  };
+
+  const results = [];
+
+  try {
+    // Check .NET Framework
+    const dotnetCheck = `try {
+      $release = Get-ItemProperty "HKLM:SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full\\" -Name Release -ErrorAction Stop;
+      ($release.Release -ge 528040).ToString().ToLower()
+    } catch {
+      "false"
+    } | Set-Content -Path $env:TEMP\\dotnet.txt`;
+    
+    const dotnetCommand = new Command("powershell", ["-Command", dotnetCheck]);
+    await dotnetCommand.execute();
+    
+    const dotnetResult = (await readTextFile(await join(await tempDir(), "dotnet.txt"))).trim();
+    dependencies.dotnet = dotnetResult === "true";
+    
+    // Check PowerShell version
+    const psCheck = `($PSVersionTable.PSVersion.Major -ge 5).ToString().ToLower() | Set-Content -Path $env:TEMP\\ps.txt`;
+    const psCommand = new Command("powershell", ["-Command", psCheck]);
+    await psCommand.execute();
+    
+    const psResult = (await readTextFile(await join(await tempDir(), "ps.txt"))).trim();
+    dependencies.powershell = psResult === "true";
+    
+    // Check Chocolatey
+    const chocoCheck = `try {
+      $null = Get-Command choco -ErrorAction Stop;
+      "true"
+    } catch {
+      "false"
+    } | Set-Content -Path $env:TEMP\\choco.txt`;
+    
+    const chocoCommand = new Command("powershell", ["-Command", chocoCheck]);
+    await chocoCommand.execute();
+    
+    const chocoResult = (await readTextFile(await join(await tempDir(), "choco.txt"))).trim();
+    dependencies.chocolatey = chocoResult === "true";
+    
+    // Check Winget
+    const wingetCheck = `try {
+      $null = Get-Command winget -ErrorAction Stop;
+      "true"
+    } catch {
+      "false"
+    } | Set-Content -Path $env:TEMP\\winget.txt`;
+    
+    const wingetCommand = new Command("powershell", ["-Command", wingetCheck]);
+    await wingetCommand.execute();
+    
+    const wingetResult = (await readTextFile(await join(await tempDir(), "winget.txt"))).trim();
+    dependencies.winget = wingetResult === "true";
+
+    // Clean up temp files
+    const tmpDir = await tempDir();
+    try {
+      await remove(await join(tmpDir, "dotnet.txt"));
+      await remove(await join(tmpDir, "ps.txt"));
+      await remove(await join(tmpDir, "choco.txt"));
+      await remove(await join(tmpDir, "winget.txt"));
+    } catch (e) {
+      console.log("Cleanup warning:", e);
+    }
+
+  } catch (error) {
+    console.error("Error checking dependencies:", error);
+  }
+
+  return dependencies;
+}
+
+// Show dependency warning if needed
+async function showDependencyWarning(deps) {
+  const missing = [];
+  
+  if (!deps.dotnet) missing.push(".NET Framework 4.8+");
+  if (!deps.powershell) missing.push("PowerShell 5.1+");
+  
+  if (missing.length > 0) {
+    const message = `Missing required dependencies: ${missing.join(", ")}\\n\\nWould you like to continue anyway? Some features may not work properly.\\n\\nFor help installing dependencies, visit the Dependencies Guide.`;
+    
+    const proceed = await ask(message, {
+      title: "Missing Dependencies",
+      kind: "warning",
+      okLabel: "Continue Anyway",
+      cancelLabel: "Cancel"
+    });
+    
+    if (!proceed) {
+      await openUrl("https://github.com/o9-9/o99/blob/main/docs/content/dependencies.md");
+      return false;
+    }
+  }
+  
+  const packageManagers = [];
+  if (!deps.chocolatey) packageManagers.push("Chocolatey");
+  if (!deps.winget) packageManagers.push("Winget");
+  
+  if (packageManagers.length > 0) {
+    const message = `Package managers not found: ${packageManagers.join(", ")}\\n\\no99 will attempt to install/update them automatically.`;
+    
+    await ask(message, {
+      title: "Package Manager Setup",
+      kind: "info",
+      okLabel: "OK"
+    });
+  }
+  
+  return true;
+}
+
 // Apply Mica if OS = Windows 11
 function applyMica() {
   const osVersion = version();
@@ -430,6 +550,15 @@ document.querySelectorAll(".checkbox-wrapper").forEach((wrapper) => {
 });
 
 document.getElementById("runBtn").addEventListener("click", async function () {
+  // Check dependencies before proceeding
+  console.log("Checking system dependencies...");
+  const dependencies = await checkSystemDependencies();
+  const canProceed = await showDependencyWarning(dependencies);
+  
+  if (!canProceed) {
+    return; // User chose not to continue
+  }
+
   // Ask for restore point
   if (!restoreCheckbox.checked) {
     let restoreAsk = await ask("Do you want to create a restore point?", {

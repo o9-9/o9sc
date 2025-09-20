@@ -24,6 +24,10 @@
     <div>
       <pre><code class="language-dos">:: Admin privileges confirmed, continue execution</code></pre>
       <pre><code class="language-dos">setlocal EnableExtensions DisableDelayedExpansion</code></pre>
+      <pre><code class="language-dos" /></pre>
+      <pre><code class="language-dos">:: Check system dependencies</code></pre>
+      <pre><code class="language-dos">echo -- Checking system dependencies:</code></pre>
+      <pre><code class="language-dos">powershell -command "echo '-- - Checking .NET Framework and PowerShell'"</code></pre>
     </div>
     <div class="restore-container">
       <pre><code class="language-dos" /></pre>
@@ -33,11 +37,12 @@
     <div class="chocolatey-container">
       <pre><code class="language-dos" /></pre>
       <pre><code class="language-dos">echo -- Installing Chocolatey:</code></pre>
-      <pre><code class="language-dos">powershell -command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"</code></pre>
+      <pre><code class="language-dos">powershell -command "echo '-- - Installing Chocolatey if needed'"</code></pre>
     </div>
     <div class="winget-container">
       <pre><code class="language-dos" /></pre>
       <pre><code class="language-dos">echo -- Update Winget:</code></pre>
+      <pre><code class="language-dos">powershell -command "echo '-- - Checking Winget availability'"</code></pre>
       <pre><code id="wingetUpgrade" class="language-dos" /></pre>
     </div>
     <div class="scripts-container">
