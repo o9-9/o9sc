@@ -1,5 +1,6 @@
 - Getting Started
   - [o99](/)
+  - [Dependencies](content/dependencies.md)
 - Scripts
   - [Tools](content/tools.md)
   - [Debloat](content/debloat.md)

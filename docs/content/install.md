@@ -1,5 +1,12 @@
 # Install Process
 
+## Prerequisites
+
+Before proceeding with the installation, ensure all system dependencies are met. See the [Dependencies Guide](dependencies.md) for detailed information about:
+- Required system components (.NET Framework, PowerShell)
+- Package manager prerequisites (Chocolatey, Winget)
+- Troubleshooting common dependency issues
+
 ## Chocolatey Install
 
 This script install chocolatey packet manager needed in order to install all the other apps via terminal.
@@ -23,3 +30,7 @@ Refreshes Windows Explorer to avoid any chocolatey bugs/errors. and then proceed
 ```
 taskkill /f /im explorer.exe && start explorer.exe && start cmd /k "choco install list-of-apps -y --force --ignorepackageexitcodes"
 ```
+
+## Dependency Validation
+
+o99 automatically validates that required dependencies are available before proceeding with installations. If any dependencies are missing, refer to the [Dependencies Guide](dependencies.md) for manual installation instructions.

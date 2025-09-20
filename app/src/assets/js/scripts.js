@@ -42,6 +42,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Scripts data: Define scripts for each type
   const scripts = {
+    dependencyvalidation: [
+      "echo -- Validating System Dependencies",
+      "echo -- Checking .NET Framework 4.8+:",
+      'powershell -command "try { $release = Get-ItemProperty \"HKLM:SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full\\\" -Name Release -ErrorAction Stop; if ($release.Release -ge 528040) { echo \"-- - SUCCESS: .NET Framework 4.8+ is installed (Release: $($release.Release))\" } else { echo \"-- - WARNING: .NET Framework 4.8+ not found (Found Release: $($release.Release))\"; echo \"-- - Please download and install .NET Framework 4.8 from Microsoft\" } } catch { echo \"-- - ERROR: Cannot check .NET Framework installation\"; echo \"-- - Please install .NET Framework 4.8+ manually\" }"',
+      "echo -- Checking PowerShell Version:",
+      'powershell -command "if ($PSVersionTable.PSVersion.Major -ge 5) { echo \"-- - SUCCESS: PowerShell $($PSVersionTable.PSVersion) is available\" } else { echo \"-- - WARNING: PowerShell 5.1+ required (Found: $($PSVersionTable.PSVersion))\"; echo \"-- - Please update PowerShell to version 5.1 or higher\" }"',
+      "echo -- Checking Package Managers:",
+      'powershell -command "try { $null = Get-Command choco -ErrorAction Stop; $chocoVersion = choco --version; echo \"-- - SUCCESS: Chocolatey $chocoVersion is installed\" } catch { echo \"-- - INFO: Chocolatey not installed (will be installed automatically)\" }"',
+      'powershell -command "try { $null = Get-Command winget -ErrorAction Stop; $wingetVersion = winget --version; echo \"-- - SUCCESS: Winget $wingetVersion is available\" } catch { echo \"-- - WARNING: Winget not found - some applications may not install\"; echo \"-- - Please update Windows 10/11 or install App Installer from Microsoft Store\" }"',
+      "echo -- Dependency validation complete",
+      "echo.",
+    ],
     microsoftstore: [
       "echo -- Uninstalling Microsoft Store",
       'PowerShell -ExecutionPolicy Unrestricted -Command "Get-AppxPackage "*Microsoft.WindowsStore*" | Remove-AppxPackage"',
@@ -1027,6 +1039,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // List of checkboxes to bind
   const checkboxItems = [
+    { id: "dependencyvalidation", type: "dependencyvalidation" },
     { id: "microsoftstore", type: "microsoftstore" },
     { id: "msstoreupdates", type: "msstoreupdates" },
     { id: "onedrive", type: "onedrive" },
