@@ -36,4 +36,4 @@ jobs:
         run: Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
 
       - name: Submit manifest to WinGet repo
-        run: .\wingetcreate.exe submit --token "${{ secrets.WINGET_TOKEN }}" --manifest .winget/o9-9.o99.yaml
+        run: .\wingetcreate.exe submit --token "${{ secrets.WINGET_TOKEN }}" .winget/o9-9.o99.yaml
