@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "o99",
   "version": "1.4.1",
-  "identifier": "o9.o99.dev",
+  "identifier": "o99.dev",
   "build": {
     "devUrl": "http://localhost:4321/",
     "frontendDist": "../dist",
