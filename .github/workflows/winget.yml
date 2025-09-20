@@ -34,4 +34,6 @@ jobs:
 
           # Update package using wingetcreate with URL|architecture format
           Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
-          .\wingetcreate.exe new $packageId --version $packageVersion --urls "$installerUrl|x64" --submit --token $gitToken
+
+          # Create and submit WinGet manifest
+          .\wingetcreate.exe new --token $gitToken $installerUrl
